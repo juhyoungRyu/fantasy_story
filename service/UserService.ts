@@ -1,4 +1,4 @@
-import { makeUserId, makeUserName } from "../util/generateUtil";
+import { makeUserId, makeNewUserName } from "../util/generateUtil";
 
 export type Job = "Nube" | "Warrior" | "Wizard";
 
@@ -10,7 +10,7 @@ export class User {
 
   constructor({ id, name, age, job }: User) {
     this.id = id ? id : makeUserId();
-    this.name = name ? name : makeUserName();
+    this.name = name ? name : makeNewUserName();
     this.age = age ? age : NaN;
     this.job = job ? job : "Nube";
   }
