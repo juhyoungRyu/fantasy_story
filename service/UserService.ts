@@ -49,31 +49,45 @@ export class UserService {
 
   /**
    * 유저 생성 메소드
-   * @example new UserService(userRepo).addUser([userData])
+   * @param arrUserData
+   * @example
+   *    const userService = new UserService(userRepo)
+   *    const addUserResult = userService.addUser([userData])
+   *    console.log(addUserResult) // true | false
+   * @returns true | false
    */
-  addUser(arrUserData: User[]) {
-    try {
-      switch (arrUserData.length === 1) {
-        // 단건 생성
-        case true:
-          {
-            const newUser = new User(arrUserData[0]);
-            this.userRepo.push(newUser);
-          }
-          break;
+  addUser(arrUserData: User[]): boolean {
+    let arrNewUser: User[] = [];
 
-        // 다건 생성
-        case false:
-          {
-            for (let i = 0; i < arrUserData.length; i++) {
-              const newUser = new User(arrUserData[i]);
-              this.userRepo.push(newUser);
-            }
-          }
-          break;
+    // Make Process
+    try {
+      console.log(`[debug] [UserService.ts] [addUser] Process Start`);
+
+      for (let i = 0; i < arrUserData.length; i++) {
+        const newUser = new User(arrUserData[i]);
+        console.log(
+          `[debug] [UserService.ts] [addUser] [Make Process] New User : ${JSON.stringify(
+            newUser
+          )}`
+        );
+
+        arrNewUser.push(newUser);
       }
     } catch (error: any) {
-      throw new Error(`Error on addUser Process : ${error.message}`);
+      throw new Error(`Error on [Make Process] : ${error.message}`);
     }
+
+    // Push Process
+    try {
+      this.userRepo.push(...arrNewUser);
+      console.log(
+        `[debug] [UserService.ts] [addUser] Repeat Count : ${arrNewUser.length}`
+      );
+    } catch (error: any) {
+      throw new Error(`Error on [Push Process] : ${error.message}`);
+    }
+
+    console.log(`[result] [UserService.ts] [addUser] Process End`);
+    return true;
   }
 }
