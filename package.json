@@ -2,18 +2,27 @@
   "name": "fantasy-story",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/main.js",
   "scripts": {
-    "dev": "ts-node main.ts"
+    "dev": "tsc && node ./dist/main"
+  },
+  "bin": {
+    "dive_fantasy": "./bin/main.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "compilerOptions": {
+    "esModuleInterop": true
+  },
   "dependencies": {
+    "chalk": "^5.3.0",
+    "inquirer": "^8.0.0",
     "typescript": "^5.3.3",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@types/inquirer": "^9.0.7",
     "@types/uuid": "^9.0.7",
     "ts-node": "^10.9.2"
   }
