@@ -3,6 +3,12 @@ import LoginService from "./service/LoginService";
 import { PromptParam } from "./interface/prompt";
 import { userRepo } from "./db/userDB";
 
+// TODO: BaseService class 생성 후 inquirer를 DI 시킬 수 있게 구조 변경
+
+/**
+ * GamePrompt
+ * @desc main 외 파일에서 inquirer를 사용하기 함수, 추후 BaseService 개발 후 사라질 예정
+ */
 async function GamePrompt({ name, message, type, choices }: PromptParam) {
   const result = await Game.prompt({
     name,
